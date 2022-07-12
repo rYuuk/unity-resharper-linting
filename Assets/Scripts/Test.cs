@@ -2,8 +2,6 @@
 
 public class Test
 {
-    private string Test =;
-    
     private const string constantStringWithWrongCase = "ok";
 
     public string publicStringWithWrongStyle;
@@ -11,7 +9,6 @@ public class Test
     private string PrivateStringWithWrongStyle;
 
     private string privateStringUnused;
-
     
     public void Start()
     {
