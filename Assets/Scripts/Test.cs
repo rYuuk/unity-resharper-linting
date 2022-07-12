@@ -2,6 +2,8 @@
 
 public class Test
 {
+    private string Test =;
+    
     private const string constantStringWithWrongCase = "ok";
 
     public string publicStringWithWrongStyle;
@@ -10,6 +12,7 @@ public class Test
 
     private string privateStringUnused;
 
+    
     public void Start()
     {
         Debug.Log(publicStringWithWrongStyle);
