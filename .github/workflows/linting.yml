@@ -4,13 +4,13 @@ on: push
 
 jobs:
   check-format:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-      - name: Install resharper global tools
-        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
+#      - name: Setup .NET Core
+#        uses: actions/setup-dotnet@v1
+#      - name: Install resharper global tools
+#        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
       - name: Check out code
         uses: actions/checkout@v3
       - name: Run rider inspect
@@ -31,6 +31,7 @@ jobs:
             os.system("cat " + PATH)
       - name: Upload artifact
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: inspect-log
           path: ${{ github.workspace }}\inspect-log.txt
