@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           # I was unable convert the logfile path from windows to unix format, so hardcoded it here 
-          logPath="D:/a/unity-rider-linting/unity-rider-linting/inspect-log.txt"
+          logPath="D:/a/unity-resharper-linting/unity-resharper-linting/inspect-log.txt"
           n=$(wc -l < "$logPath")
           if [ $n -gt 0 ]; then
             errors=$(cat "$logPath")  
