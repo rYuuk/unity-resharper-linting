@@ -1,4 +1,4 @@
-﻿name: rider linting
+﻿name: linting
 
 on: push
 
