@@ -13,7 +13,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Run resharper inspectcode
-        run:  jb inspectcode ${{ github.workspace }}\unity-rider-linting.sln --output=inspect-log.txt --format=text --severity=WARNING --no-build
+        run:  jb inspectcode ${{ github.workspace }}\unity-rider-linting.sln --output=inspect-log.txt --format=text --severity=WARNING --no-build --eXtensions=JetBrains.Unity 
       - name: Check errors
         shell: bash
         run: |
