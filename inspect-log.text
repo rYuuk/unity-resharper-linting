@@ -1,0 +1,6 @@
+﻿Solution unity-rider-linting.sln
+    Project Assembly-CSharp
+      Assets\Scripts\Test.cs:5 Name 'constantStringWithWrongCase' does not match rule 'Constant fields (private)'. Suggested name is 'CONSTANT_STRING_WITH_WRONG_CASE'.
+      Assets\Scripts\Test.cs:7 Name 'publicStringWithWrongStyle' does not match rule 'Fields (not private)'. Suggested name is 'PublicStringWithWrongStyle'.
+    
+  
