@@ -16,6 +16,9 @@ It uses a .dotSettings file in source for validating the rules, more can be foun
 - Check for any errors.
 - Logfile is uploaded as an Artifact. 
 
+## Output 
+![image](https://user-images.githubusercontent.com/1121080/179028263-9390662d-24c1-427e-a1a3-cd612bd188af.png)
+
 ## Issues
 - There are unity specific errors like `Cannot resolve symbol 'UnityEngine’`, this is due to Unity not being installed on Github hosted machine for the action.
 
