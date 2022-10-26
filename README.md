@@ -1,7 +1,7 @@
-# A Unity Linting Using Resharper
+# Linting Using Resharper
 [![rider linting](https://github.com/rYuuk/unity-resharper-linting/actions/workflows/linting.yml/badge.svg)](https://github.com/rYuuk/unity-resharper-linting/actions/workflows/linting.yml)
 
-This is a sample Unity Project demonstrating linting check using Resharper via Github action.
+This is a sample Unity Project demonstrating linting with a GitHub action using resharper inspect code. 
 For linting, resharper's [Inspect Code](https://www.jetbrains.com/help/resharper/InspectCode.html) is used. 
 It uses a .dotSettings file in source for validating the rules, more can be found out about this [here](https://www.jetbrains.com/help/rider/InspectCode.html#configuring-inspectcode-with-dotsettings).
 
