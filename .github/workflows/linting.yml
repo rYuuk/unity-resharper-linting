@@ -2,33 +2,63 @@
 
 on: push
 
+env:
+  ERRORS: Monday
+
 jobs:
   check-format:
-    runs-on: self-hosted
-
+    runs-on: windows-latest
     steps:
-#      - name: Setup .NET Core
-#        uses: actions/setup-dotnet@v1
-#      - name: Install resharper global tools
-#        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+      - name: Install resharper global tools
+        run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
       - name: Check out code
         uses: actions/checkout@v3
-      - name: Run rider inspect
-        run: jb inspectcode ${{ github.workspace }}\unity-rider-linting.sln --output=inspect-log.txt --format=text --severity=WARNING --no-build --eXtensions=JetBrains.Unity
-      - name: Check errors
+      - name: Run resharper inspectcode
+        run:  jb inspectcode ${{ github.workspace }}\unity-rider-linting.sln --output=inspect-log.txt --format=text --severity=WARNING --no-build
+      - name: Convert path
+        id: convert-path
+        run: | 
+          $pwsPath=${{ github.workspace }}\inspect-log.txt
+          echo $pwsPath
+          $path=$pwsPath -replace '\\','/'
+          echo $path
+          echo '::set-output name=path::$path'
+      - name: Print
+        shell: bash
+        run: |
+          logPath="D:/a/unity-rider-linting/unity-rider-linting/inspect-log.txt"
+          n=$(wc -l < "$logPath")
+          if [ $n -gt 0 ]; then
+            errors=$(cat "$logPath")  
+            echo "::error::$errors"
+            exit 1
+          fi
+      - name: Read log file
         shell: python
         run: |
           import sys
           import os
           PATH = os.getenv('GITHUB_WORKSPACE')+'\\inspect-log.txt'
-          print(PATH)
           file = open(PATH,"r")
           lines = file.readlines()
+          content = file.read()
+          print(content)
           file.close()
           line_count = len(lines)
-          print(f"There are {line_count} lines")
           if line_count > 0:
-            os.system("cat " + PATH)
+            os.environ["ERRORS"] = content
+            print(os.getenv('ERRORS'))
+      - name: Check errors
+        shell: bash
+        run: |
+          errors = ${{ env.ERRORS }}
+          echo $errors
+          if [ -z "$errors" ]
+          then
+          echo "::error::$errors"
+          exit 1
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         if: always()
